@@ -316,7 +316,7 @@ export function bytecodePlugin(options: BytecodeOptions = {}): Plugin | null {
                   keepBundle(chunkFileName)
                 }
                 const bytecodeLoaderBlock = getBytecodeLoaderBlock(chunk.fileName)
-                const bytecodeModuleBlock = `require("./${path.basename(name) + 'c'}");`
+                const bytecodeModuleBlock = `module.exports = require("./${path.basename(name) + 'c'}");`
                 const code = `${useStrict}\n${bytecodeLoaderBlock}\n${bytecodeModuleBlock}\n`
                 fs.writeFileSync(chunkFileName, code)
               } else {
